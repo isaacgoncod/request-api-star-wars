@@ -1,0 +1,23 @@
+version: "3.3"
+
+services:
+  app:
+    build: .
+    image: request-api-star-wars
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/app
+    restart: always
+    networks:
+      - request-api-star-wars
+
+networks:
+  request-api-star-wars:
+    driver: bridge
+
+volumes:
+  database:
+    driver: local
